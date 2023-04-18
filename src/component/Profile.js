@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 
-import {useParams} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 import Client from '../lens/Apollo';
 import {profileQuery} from "../lens/Queries"
 import { gql } from '@apollo/client'
@@ -15,6 +15,7 @@ import "../css/profile.scss"
 
 const Profile = () =>{
     let { handle } = useParams();
+    const navigate = useNavigate()
     const [loaded, setloaded] = useState(false)
     const [userProfile, setuserProfile] = useState({})
     const lensClient = new LensClient({
@@ -43,10 +44,15 @@ const Profile = () =>{
                     },
                   })
                   console.log(profileByHandle)
-                  setuserProfile(profileByHandle.data.profile)
-                  setloaded(true)
+                  if(!profileByHandle.data.profile){
+                    navigate("/error") 
+                  }else{
+                    setuserProfile(profileByHandle.data.profile)
+                    setloaded(true)
+                  }
             } catch (error) {
                 console.log(error)
+                navigate("/error")  
             }
         })()
     },[])

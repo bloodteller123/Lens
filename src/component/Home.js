@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from "react"
 
 import "../css/home.scss"
-import Button from '@mui/material-next/Button';
+import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import ToggleOnIcon from '@mui/icons-material/ToggleOn';
@@ -24,7 +24,9 @@ const Home = () =>{
     }, [dark])
 
     const fetchProfile = async () =>{
-        navigate(`/profiles/${handle}`)
+        console.log("click")
+        
+        navigate(`/profile/${handle}`)
     }
 
     const ToggleBtn = ({ darkMode, handleToggle }) => {
@@ -47,7 +49,7 @@ const Home = () =>{
         )
       }
 
-      
+
     return(
         <div className="home">
             <ToggleBtn handleToggle={toggle} darkMode={dark}/>
