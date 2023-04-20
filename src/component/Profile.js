@@ -18,10 +18,6 @@ const Profile = () =>{
     const navigate = useNavigate()
     const [loaded, setloaded] = useState(false)
     const [userProfile, setuserProfile] = useState({})
-    const lensClient = new LensClient({
-        environment: process.env.NODE_ENV === "production" ?
-                     production : development
-      })
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -45,6 +41,7 @@ const Profile = () =>{
                   })
                   console.log(profileByHandle)
                   if(!profileByHandle.data.profile){
+                    console.log('error')
                     navigate("/error") 
                   }else{
                     setuserProfile(profileByHandle.data.profile)
@@ -76,44 +73,44 @@ const Profile = () =>{
         <div>
             {loaded && 
                 
-                <div style={{margin:208}}>
+                <div className='container' style={{margin:208}}>
                     <Grid sx={{ flexGrow: 1 }} container>
                         <Grid item xs={12}>
                             <Grid container justifyContent="center" rowSpacing={3} columnSpacing={{ xs: 0.1, sm: 0.2, md: 0.4 }}>
                                 <Grid container >
                                     <Grid item xs={3}>
                                         <div className="gridClass" style={{backgroundColor: '#9B60C3'}}>
-                                            {userProfile.name}
+                                            <div>name</div><span>{userProfile.name}</span>
                                         </div>
                                     </Grid>
                                     <Grid item xs={3} >
                                             <div className="gridClass" style={{backgroundColor: '#6CCE71'}}>
-                                            {userProfile.stats.totalCollects}
+                                            <div>totalCollects</div><span>{userProfile.stats.totalCollects}</span>
                                         </div>
                                     </Grid>
                                     <Grid item xs={3}>
                                     <div className="gridClass" style={{backgroundColor: '#EE6565'}}>
-                                    {userProfile.stats.totalComments}
+                                    <div>totalComments</div><span>{userProfile.stats.totalComments}</span>
                                             </div>
                                     </Grid>
                                     <Grid item xs={3}>
                                     <div className="gridClass" style={{backgroundColor: '#65EEA1'}}>
-                                    {userProfile.stats.totalPosts}
-                                            </div>
+                                    <div>totalPosts</div><span>{userProfile.stats.totalPosts}</span>
+                                    </div>
                                     </Grid>
                                     <Grid item xs={3}>
                                     <div className="gridClass" style={{backgroundColor: '#E0EE65'}}>
-                                    {userProfile.stats.totalFollowers}
+                                    <div>totalMirrors</div><span>{userProfile.stats.totalMirrors}</span>
                                         </div>
                                     </Grid>
                                     <Grid item xs={3}>
                                     <div className="gridClass" style={{backgroundColor: '#E0EE65'}}>
-                                    {userProfile.stats.totalFollowers}
+                                    <div>totalFollowing</div><span>{userProfile.stats.totalFollowing}</span>
                                         </div>
                                     </Grid>
                                     <Grid item xs={6}>
                                     <div className="gridClass big" style={{backgroundColor: '#E0EE65'}}>
-                                    {userProfile.stats.totalFollowers}
+                                    <h3>placeholder</h3>
                                         </div>
                                     </Grid>
                                 </Grid>

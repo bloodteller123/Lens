@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 const Error = () =>{
     const navigate = useNavigate()
     return(
-        <div>
+        <div class="background">
             <div>
             <div className="starsec"></div>
             <div className="starthird"></div>
