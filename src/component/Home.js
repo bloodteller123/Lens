@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from "react"
 
 import "../css/home.scss"
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import ToggleOnIcon from '@mui/icons-material/ToggleOn';
@@ -25,8 +25,8 @@ const Home = () =>{
 
     const fetchProfile = async () =>{
         console.log("click")
-        
-        navigate(`/profile/${handle}`)
+        if(handle)
+          navigate(`/profile/${handle}`)
     }
 
     const ToggleBtn = ({ darkMode, handleToggle }) => {
@@ -53,19 +53,20 @@ const Home = () =>{
     return(
         <div className="home">
             <ToggleBtn handleToggle={toggle} darkMode={dark}/>
-            <div class="container">
-                <h1>Enter your lens profile name</h1>
+            <div className="container">
+                <h1 className="prompt">Enter your lens profile name</h1>
                 
                 <div className="flexclass">
                     <div className="flexchild symbol">@</div>
-                    <input className="flexchild" 
+                    <input className="flexchild input" 
                             type="text" 
                             value={handle} 
                             onChange={e => setHandle(e.target.value)}/>
                 </div>
-                <Button size="large" variant="elevated" style={{marginTop:50}} onClick={fetchProfile}>
+                {/* <Button size="large" variant="elevated" style={{marginTop:50}} >
                     Generate your stats!
-                </Button>
+                </Button> */}
+                <button class="button-generate" onClick={fetchProfile}>Show stats!</button>
             </div>
         </div>
     )
